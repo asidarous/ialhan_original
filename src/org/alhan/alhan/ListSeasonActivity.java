@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListSeasonActivity extends ListActivity {
 
@@ -37,8 +38,11 @@ public class ListSeasonActivity extends ListActivity {
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
+    	String itemText = (String) l.getItemAtPosition(position);
     	Intent intent = new Intent(this, ListHymnsActivity.class);
     	intent.putExtra("event_id", position);
+    	intent.putExtra("season_name", itemText);
+    	Toast.makeText(this, "Season " + itemText, 4).show();
     	startActivity(intent);
     }
 

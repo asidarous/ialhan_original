@@ -4,9 +4,9 @@
     tools:context="org.alhan.alhan.ListSeasonActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_event"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/title_event"
         app:showAsAction="never"/>
 
 </menu>

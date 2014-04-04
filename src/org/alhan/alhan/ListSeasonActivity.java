@@ -17,24 +17,30 @@ import android.widget.Toast;
 public class ListSeasonActivity extends ListActivity {
 
 	
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
+	@Override
+	protected void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_list_season);
 
-        DBOpenHelper dbOpenHelper = new DBOpenHelper(this);
-        
-        SQLiteDatabase db = dbOpenHelper.getDB();
-        Cursor cursor = db.query("season", new String[]{"season"}, null, null, null,null, "season");
-        List<String> seasons = new ArrayList<String>();
-        cursor.moveToFirst();
-        do {
-        	String value = cursor.getString(cursor.getColumnIndex("season"));
-        	seasons.add(value);
-        } while (cursor.moveToNext());
-        
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, seasons);
-        setListAdapter(adapter);
-    }
+		List<String> seasons = addListFromQuery();
+		ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_list_season, R.id.customFont, seasons);
+
+		setListAdapter(adapter);
+	}
+
+	private List<String> addListFromQuery() {
+		DBOpenHelper dbOpenHelper = new DBOpenHelper(this);
+
+		SQLiteDatabase db = dbOpenHelper.getDB();
+		Cursor cursor = db.query("season", new String[]{"season"}, null, null, null,null, "season");
+		List<String> seasons = new ArrayList<String>();
+		cursor.moveToFirst();
+		do {
+			String value = cursor.getString(cursor.getColumnIndex("season"));
+			seasons.add(value);
+		} while (cursor.moveToNext());
+		return seasons;
+	}
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -42,7 +48,7 @@ public class ListSeasonActivity extends ListActivity {
     	Intent intent = new Intent(this, ListHymnsActivity.class);
     	intent.putExtra("event_id", position);
     	intent.putExtra("season_name", itemText);
-    	Toast.makeText(this, "Season " + itemText, 4).show();
+    	Toast.makeText(this, "Season " + itemText, Toast.LENGTH_SHORT).show();
     	startActivity(intent);
     }
 

@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -17,12 +16,22 @@ public class ListHymnsActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list_season);
+        
+        
+        List<String> hymns = getHymns();
+        ListAdapter adapter = new CustomFontArrayAdapter<String>(this, R.layout.activity_list_season, R.id.customFont, hymns);
+        setListAdapter(adapter);
+    }
 
-        DBOpenHelper dbOpenHelper = new DBOpenHelper(this);
+	private List<String> getHymns() {
+		DBOpenHelper dbOpenHelper = new DBOpenHelper(this);
         
         SQLiteDatabase db = dbOpenHelper.getDB();
         
         int eventId = (int) getIntent().getExtras().get("event_id");
+        
+        String seasonName = getIntent().getStringExtra("season_name");
 
 		Cursor cursor = db.query("hymn", new String[]{"hymn_name"}, "hymn_event_id_fk = " + eventId , null, null,null, "hymn_name");
         List<String> hymns = new ArrayList<String>();
@@ -34,10 +43,8 @@ public class ListHymnsActivity extends ListActivity {
         	} while (cursor.moveToNext());
         	
         }
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hymns);
-        // Bind to our new adapter.
-        setListAdapter(adapter);
-    }
+		return hymns;
+	}
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {

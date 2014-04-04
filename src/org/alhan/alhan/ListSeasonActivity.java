@@ -3,6 +3,8 @@ package org.alhan.alhan;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.alhan.alhan.model.Season;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,33 +24,35 @@ public class ListSeasonActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_season);
 
-		List<String> seasons = addListFromQuery();
-		ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_list_season, R.id.customFont, seasons);
+		List<Season> seasons = addListFromQuery();
+		ListAdapter adapter = new ArrayAdapter<Season>(this, R.layout.activity_list_season, R.id.customFont, seasons);
 
 		setListAdapter(adapter);
 	}
 
-	private List<String> addListFromQuery() {
+	private List<Season> addListFromQuery() {
 		DBOpenHelper dbOpenHelper = new DBOpenHelper(this);
 
 		SQLiteDatabase db = dbOpenHelper.getDB();
-		Cursor cursor = db.query("season", new String[]{"season"}, null, null, null,null, "season");
-		List<String> seasons = new ArrayList<String>();
+		Cursor cursor = db.query("season", new String[]{"season", "season_id"}, null, null, null,null, "season");
+		List<Season> seasons = new ArrayList<Season>();
 		cursor.moveToFirst();
 		do {
-			String value = cursor.getString(cursor.getColumnIndex("season"));
-			seasons.add(value);
+			String name = cursor.getString(cursor.getColumnIndex("season"));
+			String id = cursor.getString(cursor.getColumnIndex("season_id"));
+			seasons.add(new Season(name, id));
 		} while (cursor.moveToNext());
+		db.close();
 		return seasons;
 	}
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-    	String itemText = (String) l.getItemAtPosition(position);
+    	Season seasonClicked = (Season) l.getItemAtPosition(position);
     	Intent intent = new Intent(this, ListHymnsActivity.class);
-    	intent.putExtra("event_id", position);
-    	intent.putExtra("season_name", itemText);
-    	Toast.makeText(this, "Season " + itemText, Toast.LENGTH_SHORT).show();
+    	intent.putExtra("season_id", seasonClicked.getSeasonId());
+    	intent.putExtra("season_name", seasonClicked.toString());
+    	Toast.makeText(this, "Season " + seasonClicked + ", id=" + seasonClicked.getSeasonId(), Toast.LENGTH_SHORT).show();
     	startActivity(intent);
     }
 

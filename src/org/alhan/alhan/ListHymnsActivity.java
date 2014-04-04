@@ -29,11 +29,9 @@ public class ListHymnsActivity extends ListActivity {
         
         SQLiteDatabase db = dbOpenHelper.getDB();
         
-        int eventId = (int) getIntent().getExtras().get("event_id");
-        
-        String seasonName = getIntent().getStringExtra("season_name");
+        String seasonId = getIntent().getStringExtra("season_id");
 
-		Cursor cursor = db.query("hymn", new String[]{"hymn_name"}, "hymn_event_id_fk = " + eventId , null, null,null, "hymn_name");
+		Cursor cursor = db.query("hymn", new String[]{"hymn_name"}, "hymn_event_id_fk = " + seasonId , null, null,null, "hymn_name");
         List<String> hymns = new ArrayList<String>();
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
@@ -43,6 +41,7 @@ public class ListHymnsActivity extends ListActivity {
         	} while (cursor.moveToNext());
         	
         }
+        db.close();
 		return hymns;
 	}
     

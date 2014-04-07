@@ -34,7 +34,7 @@ public class ListSeasonActivity extends ListActivity {
 		DBOpenHelper dbOpenHelper = new DBOpenHelper(this);
 
 		SQLiteDatabase db = dbOpenHelper.getDB();
-		Cursor cursor = db.query("season", new String[]{"season", "season_id"}, null, null, null,null, "season");
+		Cursor cursor = db.query("season", new String[]{"season", "season_id"}, null, null, null,null, "season_id");
 		List<Season> seasons = new ArrayList<Season>();
 		cursor.moveToFirst();
 		do {

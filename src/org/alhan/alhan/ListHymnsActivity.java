@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListAdapter;
@@ -31,10 +32,10 @@ public class ListHymnsActivity extends ListActivity {
         
         String seasonId = getIntent().getStringExtra("season_id");
 
-		//Cursor cursor = db.query("hymn", new String[]{"hymn_name"}, "hymn_event_id_fk = " + seasonId , null, null,null, "hymn_name");
-		//Cursor cursor = db.query("event", new String[]{"event_name"}, "event_season_fk = " + seasonId , null, null,null, "event_id");
-        //Cursor cursor = db.rawQuery("Select h.hymn_name from hymn h where hymn_event_id_fk in (select event_id from event where event_season_fk="+seasonId+")",null);
-        Cursor cursor = db.rawQuery("Select h.hymn_name, e.event_name, h.hymn_desc from hymn h inner join event e on e.event_id = h.hymn_event_id_fk where e.event_season_fk = "+seasonId+" order by hymn_order",null);
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables("hymn join event on hymn_event_id_fk = event_id");
+		Cursor cursor = qb.query(db, new String[]{"hymn_name"}, "event_season_fk = " + seasonId , null, null,null, "hymn_name");
+
         List<String> hymns = new ArrayList<String>();
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {

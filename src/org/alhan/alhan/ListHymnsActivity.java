@@ -2,6 +2,9 @@ package org.alhan.alhan;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import android.app.ListActivity;
 import android.database.Cursor;
@@ -34,26 +37,44 @@ public class ListHymnsActivity extends ListActivity {
 
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables("hymn join event on hymn_event_id_fk = event_id");
-		Cursor cursor = qb.query(db, new String[]{"hymn_name"}, "event_season_fk = " + seasonId , null, null,null, "hymn_name");
+		Cursor cursor = qb.query(db, new String[]{"hymn_name", "event_name"}, "event_season_fk = " + seasonId , null, null,null, "event_name, hymn_name");
 
         List<String> hymns = new ArrayList<String>();
+        Map<String, List<String>> events = new TreeMap<String, List<String>>();
+        
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
         	do {
         		String hymnName = cursor.getString(cursor.getColumnIndex("hymn_name"));
-        		//String eventName = cursor.getString(cursor.getColumnIndex("event_name"));
+        		String eventName = cursor.getString(cursor.getColumnIndex("event_name"));
         		//String hymnDesc = cursor.getString(cursor.getColumnIndex("hymn_desc"));
-        		hymns.add(hymnName);
+        		//hymns.add(eventName + "  --  " + hymnName);
+        		addHymnToEvent(events, eventName, hymnName);
         		//hymns.add(eventName);
         		//hymns.add(hymnDesc);
         	} while (cursor.moveToNext());
         	
         }
         db.close();
+        
+        for(Entry<String, List<String>> entry : events.entrySet()) {
+        	String eventName = entry.getKey();
+        	hymns.add(eventName);
+        	for (String hymnName : entry.getValue()) {
+        		hymns.add("    " + hymnName);
+        	}
+        }
 		return hymns;
 	}
     
-    @Override
+    private void addHymnToEvent(Map<String, List<String>> events, String eventName, String hymnName) {    	
+    	if (!events.containsKey(eventName)) {
+    		events.put(eventName, new ArrayList<String>());
+    	}
+   		events.get(eventName).add(hymnName);
+	}
+
+	@Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
     	// TODO: Add the DetailHymnActivity here
     }

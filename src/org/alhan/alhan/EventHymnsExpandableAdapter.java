@@ -4,6 +4,7 @@ import org.alhan.alhan.model.Event;
 import org.alhan.alhan.model.Hymn;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -89,9 +90,11 @@ public class EventHymnsExpandableAdapter extends BaseExpandableListAdapter {
 			
 			@Override
 			public void onClick(View v) {
+				
 				Toast.makeText(activity, hymn.getId() + "  " + hymn.getName(),
 			            Toast.LENGTH_SHORT).show();
-				
+
+
 			}
 		});
 		return convertView;

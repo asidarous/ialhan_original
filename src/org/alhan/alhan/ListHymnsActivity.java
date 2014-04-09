@@ -27,16 +27,9 @@ public class ListHymnsActivity extends Activity {
         
         SparseArray<Event> events = getEvents();
         
-//<<<<<<< HEAD
-//        List<String> hymns = getHymns();
-//        ListAdapter adapter = new CustomFontArrayAdapter<String>(this, R.layout.activity_list_season, R.id.customFont, hymns);
-//        
-//        setListAdapter(adapter);
-//=======
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);
         EventHymnsExpandableAdapter adapter = new EventHymnsExpandableAdapter(this, events);
         listView.setAdapter(adapter);
-//>>>>>>> FETCH_HEAD
     }
 
 	private SparseArray<Event> getEvents() {

@@ -3,7 +3,6 @@ package org.alhan.alhan;
 import org.alhan.alhan.model.Event;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
@@ -21,10 +20,6 @@ public class ListHymnsActivity extends Activity {
         setContentView(R.layout.activity_list_hymns);
         
         SparseArray<Event> events = getEvents();
-        //List<String> hymns = getHymns();
-//        ListAdapter adapter = new CustomFontArrayAdapter<String>(this, R.layout.activity_list_season, R.id.customFont, hymns);
-//        setListAdapter(adapter);
-        
         
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);
         EventHymnsExpandableAdapter adapter = new EventHymnsExpandableAdapter(this, events);

@@ -4,6 +4,7 @@ import org.alhan.alhan.model.Event;
 import org.alhan.alhan.model.Hymn;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +82,8 @@ public class EventHymnsExpandableAdapter extends BaseExpandableListAdapter {
 	      convertView = inflater.inflate(R.layout.hymn_row_detail, null);
 	    }
 	    text = (TextView) convertView.findViewById(R.id.textView1);
+		Typeface font = Typeface.createFromAsset(activity.getAssets(), "fonts/CS_Avva_Shenouda.ttf");
+		text.setTypeface(font);
 	    text.setText(hymn.getName());
 	    convertView.setOnClickListener(new OnClickListener() {
 			

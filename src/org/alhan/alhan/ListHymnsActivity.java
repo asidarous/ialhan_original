@@ -6,7 +6,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import org.alhan.alhan.model.Hymn;
+import org.alhan.alhan.model.Season;
+
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
@@ -14,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListHymnsActivity extends ListActivity {
 
@@ -25,6 +30,7 @@ public class ListHymnsActivity extends ListActivity {
         
         List<String> hymns = getHymns();
         ListAdapter adapter = new CustomFontArrayAdapter<String>(this, R.layout.activity_list_season, R.id.customFont, hymns);
+        
         setListAdapter(adapter);
     }
 
@@ -34,7 +40,8 @@ public class ListHymnsActivity extends ListActivity {
         SQLiteDatabase db = dbOpenHelper.getDB();
         
         String seasonId = getIntent().getStringExtra("season_id");
-
+        
+        
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables("hymn join event on hymn_event_id_fk = event_id");
 		Cursor cursor = qb.query(db, new String[]{"hymn_name", "event_name"}, "event_season_fk = " + seasonId , null, null,null, "event_name, hymn_name");
@@ -76,7 +83,10 @@ public class ListHymnsActivity extends ListActivity {
 
 	@Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-    	// TODO: Add the DetailHymnActivity here
+		//Hymn hymnClicked = (Hymn) l.getItemAtPosition(position);
+		Intent intent = new Intent(this, HymnDetail.class);
+    	
+    	startActivity(intent);
     }
 
 }

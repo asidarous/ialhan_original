@@ -4,5 +4,6 @@
     <string name="app_name">Alhan</string>
     <string name="title_activity_list_hymns">Hymns</string>
     <string name="title_event">Events</string>
+    <string name="title_hymn_detail">Hymn Detail</string>
 
 </resources>

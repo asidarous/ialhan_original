@@ -90,9 +90,12 @@ public class EventHymnsExpandableAdapter extends BaseExpandableListAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				
 				Toast.makeText(activity, hymn.getId() + "  " + hymn.getName(),
 			            Toast.LENGTH_SHORT).show();
+				
+				Intent intent = new Intent(activity, HymnDetail.class);
+				intent.putExtra("hymn_id", hymn.getId());
+				activity.startActivity(intent);
 
 
 			}

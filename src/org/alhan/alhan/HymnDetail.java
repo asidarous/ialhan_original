@@ -26,7 +26,7 @@ public class HymnDetail extends Activity {
 		DBOpenHelper dbOpenHelper = new DBOpenHelper(this);
 		SQLiteDatabase db = dbOpenHelper.getDB();
 		
-        String hymnId = "4";//getIntent().getStringExtra("season_id");
+        String hymnId = getIntent().getStringExtra("hymn_id");
         Cursor cursor = db.query("hymn", new String[]{"hymn_coptic","hymn_english"}, "hymn_id = "+Integer.parseInt(hymnId), null, null,null, null);
         cursor.moveToFirst();
         String copticText = cursor.getString(cursor.getColumnIndex("hymn_coptic"));

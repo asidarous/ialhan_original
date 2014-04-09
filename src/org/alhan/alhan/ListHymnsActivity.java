@@ -2,21 +2,13 @@ package org.alhan.alhan;
 
 import org.alhan.alhan.model.Event;
 
-import org.alhan.alhan.model.Hymn;
-import org.alhan.alhan.model.Season;
-
-import android.app.ListActivity;
-import android.content.Intent;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Bundle;
 import android.util.SparseArray;
-import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 public class ListHymnsActivity extends Activity {
 
@@ -70,13 +62,5 @@ public class ListHymnsActivity extends Activity {
 
         return events;
 	}
-
-
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-		//Hymn hymnClicked = (Hymn) l.getItemAtPosition(position);
-		Intent intent = new Intent(this, HymnDetail.class);
-    	
-    	startActivity(intent);
-    }
 
 }

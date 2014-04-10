@@ -37,7 +37,7 @@ public class ListHymnsActivity extends Activity {
         
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables("hymn join event on hymn_event_id_fk = event_id");
-		Cursor cursor = qb.query(db, new String[]{"hymn_name",  "hymn_id", "hymn_event_id_fk", "event_name"}, "event_season_fk = " + seasonId , null, null,null, "event_name, hymn_name");
+		Cursor cursor = qb.query(db, new String[]{"hymn_name",  "hymn_id", "hymn_event_id_fk", "event_name"}, "event_season_fk = " + seasonId , null, null,null, "event_id, hymn_order");
 
         cursor.moveToFirst();
         int i = -1;

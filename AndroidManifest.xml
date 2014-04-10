@@ -26,7 +26,7 @@
         <activity
             android:name="org.alhan.alhan.ListHymnsActivity"
             android:label="@string/title_activity_list_hymns"
-            android:parentActivityName="android.app.ListActivity" >
+            android:parentActivityName="org.alhan.alhan.ListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="android.app.ListActivity" />
@@ -34,7 +34,7 @@
         <activity
             android:name="org.alhan.alhan.HymnDetail"
             android:label="@string/title_hymn_detail"
-            android:parentActivityName="android.app.ListHymnsActivity" >
+            android:parentActivityName="org.alhan.alhan.ListHymnsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="android.app.activity" />

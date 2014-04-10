@@ -29,5 +29,18 @@
 	    android:textOff="English"
 	    android:textOn="Coptic"
 	    android:textSize="8dp" />
+<TextView
+    android:id="@+id/now_playing_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dip"
+    android:layout_marginLeft="10dip"
+    android:layout_marginRight="10dip"
+    android:layout_gravity="center"
+    android:text="Now playing.."
+    android:textSize="16sp"
+    android:textStyle="italic"
+    />
+
 
 </MediaController>

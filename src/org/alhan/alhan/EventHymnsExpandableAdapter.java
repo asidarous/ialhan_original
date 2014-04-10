@@ -95,6 +95,7 @@ public class EventHymnsExpandableAdapter extends BaseExpandableListAdapter {
 				
 				Intent intent = new Intent(activity, HymnDetail.class);
 				intent.putExtra("hymn_id", hymn.getId());
+				intent.putExtra("hymn_name", hymn.getName());
 				activity.startActivity(intent);
 
 

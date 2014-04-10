@@ -2,6 +2,7 @@ package org.alhan.alhan;
 
 import org.alhan.alhan.model.Event;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,11 +13,13 @@ import android.widget.ExpandableListView;
 
 public class ListHymnsActivity extends Activity {
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_hymns);
-        
+        String seasonName = getIntent().getStringExtra("season_name");
+        getActionBar().setTitle(seasonName); 
         SparseArray<Event> events = getEvents();
         
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);

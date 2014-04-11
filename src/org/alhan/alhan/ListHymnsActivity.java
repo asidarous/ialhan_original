@@ -40,7 +40,7 @@ public class ListHymnsActivity extends Activity {
         
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables("hymn join event on hymn_event_id_fk = event_id");
-		Cursor cursor = qb.query(db, new String[]{"hymn_name",  "hymn_id", "hymn_event_id_fk", "event_name"}, "event_season_fk = " + seasonId , null, null,null, "event_id, hymn_order");
+		Cursor cursor = qb.query(db, new String[]{"hymn_name",  "hymn_id", "hymn_event_id_fk", "event_name", "hymn_desc"}, "event_season_fk = " + seasonId , null, null,null, "event_id, hymn_order");
 
         cursor.moveToFirst();
         int i = -1;
@@ -51,12 +51,13 @@ public class ListHymnsActivity extends Activity {
         		String hymnName = cursor.getString(cursor.getColumnIndex("hymn_name"));
         		String eventId = cursor.getString(cursor.getColumnIndex("hymn_event_id_fk"));
         		String eventName = cursor.getString(cursor.getColumnIndex("event_name"));
+        		String hymnDesc = cursor.getString(cursor.getColumnIndex("hymn_desc"));
         		if (!eventId.equals(previousEventId)) {
         			Event newEvent = new Event(eventId, eventName);
         			events.put(++i, newEvent);
         			previousEventId = eventId;        			
         		}
-        		events.get(i).addHymn(hymnId, hymnName);
+        		events.get(i).addHymn(hymnId, hymnName, hymnDesc);
         		
         	} while (cursor.moveToNext());
         	

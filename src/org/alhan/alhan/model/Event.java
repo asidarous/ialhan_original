@@ -35,8 +35,8 @@ public class Event {
 		this.hymns.addAll(hymnList);
 	}
 	
-	public void addHymn(String hymnId, String hymnName) {
-		Hymn hymn = new Hymn(hymnId, hymnName);
+	public void addHymn(String hymnId, String hymnName, String hymnDesc) {
+		Hymn hymn = new Hymn(hymnId, hymnName, hymnDesc);
 		addHymns(hymn);
 	}
 	

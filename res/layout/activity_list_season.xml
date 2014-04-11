@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="org.alhan.alhan.ListSeasonActivity"
+    android:background="@drawable/rounded_corner_view"
     tools:ignore="MergeRootFrame" >
 
     <ListView
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="15dp"
 		android:paddingRight="15dp"
-        android:textSize="20sp" />
+		android:textColor="#800000"
+        android:textSize="15sp" />
 
 </LinearLayout>

@@ -9,6 +9,7 @@ public class Hymn {
 	
 	private String id;
 	private String name;
+	private String desc;
 
 	public String getId() {
 		return id;
@@ -34,11 +35,20 @@ public class Hymn {
 	public void setHymnEnglish(String hymnEnglish) {
 		this.hymnEnglish = hymnEnglish;
 	}
+	public String getDesc() {
+		return desc;
+	}
+	
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
-	public Hymn(String hymnId, String hymnName) {
+	public Hymn(String hymnId, String hymnName, String hymnDesc) {
 		this.id = hymnId;
 		this.name = hymnName;
+		this.setDesc(hymnDesc);
 	}
+
 
 
 }

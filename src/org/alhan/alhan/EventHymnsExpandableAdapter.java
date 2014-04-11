@@ -79,6 +79,7 @@ public class EventHymnsExpandableAdapter extends BaseExpandableListAdapter {
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 		final Hymn hymn = (Hymn) getChild(groupPosition, childPosition);
 	    TextView text = null;
+	    TextView descText = null;
 	    if (convertView == null) {
 	      convertView = inflater.inflate(R.layout.hymn_row_detail, null);
 	    }
@@ -86,6 +87,10 @@ public class EventHymnsExpandableAdapter extends BaseExpandableListAdapter {
 		Typeface font = Typeface.createFromAsset(activity.getAssets(), "fonts/CS_Avva_Shenouda.ttf");
 		text.setTypeface(font);
 	    text.setText(hymn.getName());
+	    descText = (TextView) convertView.findViewById(R.id.textView2);
+		Typeface englishFont = Typeface.DEFAULT;
+		descText.setTypeface(englishFont);
+		descText.setText(hymn.getDesc());
 	    convertView.setOnClickListener(new OnClickListener() {
 			
 			@Override

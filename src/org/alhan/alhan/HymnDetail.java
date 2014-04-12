@@ -27,6 +27,7 @@ public class HymnDetail extends Activity {
 		setContentView(R.layout.hymn_detail_view);
 
 		// Change title background and text to be Coptic hymn name
+		if (android.os.Build.VERSION.SDK_INT >= 11){
 		int titleId = getResources().getIdentifier("action_bar_title", "id","android");
 		TextView titleTextView = (TextView) findViewById(titleId);
 		Typeface font = Typeface.createFromAsset(getAssets(),"fonts/CS_Avva_Shenouda.ttf");
@@ -35,9 +36,9 @@ public class HymnDetail extends Activity {
 		String hymnName = getIntent().getStringExtra("hymn_name");
 		ColorDrawable colorDrawable = new ColorDrawable();
 		colorDrawable.setColor(Color.argb(255, 153, 0, 0));
-		getActionBar().setBackgroundDrawable(colorDrawable);
-		getActionBar().setTitle(hymnName);
-		
+			getActionBar().setBackgroundDrawable(colorDrawable);
+			getActionBar().setTitle(hymnName);
+		}
 		getCopticTextFromQuery();
 		tx1 = (TextView) findViewById(R.id.hymnView);
 		

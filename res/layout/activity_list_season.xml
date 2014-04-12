@@ -1,26 +1,36 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="org.alhan.alhan.ListSeasonActivity"
-    android:background="@drawable/rounded_corner_view"
     tools:ignore="MergeRootFrame" >
+
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+     android:background="@drawable/rounded_corner_view"
+        >
+           
     </ListView>
-
+ 
     <TextView
         android:id="@+id/customFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
         android:paddingLeft="15dp"
 		android:paddingRight="15dp"
 		android:textColor="#800000"
-        android:textSize="15sp" />
+		android:gravity="center_vertical"
+        android:textSize="12sp" />
+    
 
-</LinearLayout>
+
+</RelativeLayout>

@@ -5,6 +5,7 @@ import org.alhan.alhan.model.Hymn;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -72,6 +73,14 @@ public class EventHymnsExpandableAdapter extends BaseExpandableListAdapter {
 	    Event event = (Event) getGroup(groupPosition);
 	      ((CheckedTextView) convertView).setText(event.getName());
 	      ((CheckedTextView) convertView).setChecked(isExpanded);
+	      
+	      if(groupPosition%2==0)
+	        {
+	    	  ((CheckedTextView) convertView).setBackgroundColor(Color.parseColor("#50FCFBE3"));
+	        }else
+	        {
+	        	((CheckedTextView) convertView).setBackgroundColor(Color.parseColor("#50FAFAF7"));
+	        }
 	      return convertView;
 	}
 

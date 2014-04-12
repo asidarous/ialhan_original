@@ -18,8 +18,11 @@ public class ListHymnsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_hymns);
+        if (android.os.Build.VERSION.SDK_INT >= 11)
+        {
         String seasonName = getIntent().getStringExtra("season_name");
         getActionBar().setTitle(seasonName); 
+        }
         SparseArray<Event> events = getEvents();
         
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.listView);

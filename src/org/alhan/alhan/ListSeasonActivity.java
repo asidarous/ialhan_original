@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.alhan.alhan.model.Season;
 
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,14 +19,24 @@ import android.widget.Toast;
 public class ListSeasonActivity extends ListActivity {
 
 	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_list_season);
+		int layoutResID = 0;
+		if (android.os.Build.VERSION.SDK_INT >= 11){
+			getActionBar().setTitle("Seasons");
+			layoutResID = R.layout.activity_list_season;
+		}else{
+			layoutResID = R.layout.activity_list_season_old_os;
+		}
+		setContentView(layoutResID);
 
 		List<Season> seasons = addListFromQuery();
-		ListAdapter adapter = new ArrayAdapter<Season>(this, R.layout.activity_list_season, R.id.customFont, seasons);
-
+		ListAdapter adapter = null;
+		//ListAdapter adapter = new ArrayAdapter<Season>(this, R.layout.activity_list_season, R.id.customFont, seasons);
+		adapter = new SpecialArrayAdaptor<Season>(this, layoutResID, R.id.customFont, seasons);
+			
 		setListAdapter(adapter);
 	}
 

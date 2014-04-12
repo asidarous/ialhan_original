@@ -35,7 +35,7 @@ public class ListSeasonActivity extends ListActivity {
 		List<Season> seasons = addListFromQuery();
 		ListAdapter adapter = null;
 		//ListAdapter adapter = new ArrayAdapter<Season>(this, R.layout.activity_list_season, R.id.customFont, seasons);
-		adapter = new SpecialArrayAdaptor<Season>(this, layoutResID, R.id.customFont, seasons);
+		adapter = new SpecialArrayAdapter<Season>(this, layoutResID, R.id.customFont, seasons);
 			
 		setListAdapter(adapter);
 	}
